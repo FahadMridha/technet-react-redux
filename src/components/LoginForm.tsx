@@ -10,9 +10,7 @@ import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { loginUser } from '@/redux/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useNavigate } from 'react-router-dom';
-import {useEffect}from 'react'
-
+import { useLocation, useNavigate } from 'react-router-dom';
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
 interface LoginFormInputs {
@@ -27,22 +25,21 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
-  const {user,isLoading} =useAppSelector(state=>state.user)
-  const dispatch = useAppDispatch()
- const navigate = useNavigate()
-
+  const { user, isLoading } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const onSubmit = (data: LoginFormInputs) => {
-    console.log(data);
-    dispatch(loginUser({email : data.email , password : data.password}))
+    // console.log(data);
+    dispatch(loginUser({ email: data.email, password: data.password }));
   };
 
-  useEffect(()=>{
-    if(user.email && !isLoading){
-navigate('/')
-    }
-  },[user.email,isLoading])
-  
+  const from = location.state?.from?.pathname || '/';
+  if (user.email && !isLoading) {
+    navigate(from, { replace: true });
+  }
+
   return (
     <div className={cn('grid gap-6', className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>

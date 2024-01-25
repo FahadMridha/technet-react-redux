@@ -26,7 +26,7 @@ const dispatch = useAppDispatch();
 signOut(auth).then(() => {
   dispatch(setUser(null))
 }).catch((error) => {
-  console.log('signOut error');
+  console.log('signOut error',error);
 });
   }
   return (

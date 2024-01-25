@@ -6,9 +6,6 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { useAppSelector } from '@/redux/hooks';
-import { IProduct } from '@/types/globalTypes';
-import { Action } from '@radix-ui/react-toast';
-
 import { useState } from 'react';
 
 export default function Checkout() {

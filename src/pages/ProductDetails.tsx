@@ -10,18 +10,6 @@ export default function ProductDetails() {
   const {data : product ,isLoading,error} = useSingleProductGetQuery(id)
   console.log(isLoading,error);
 
-  // //! Temporary code, should be replaced with redux
-  // const [data, setData] = useState<IProduct[]>([]);
-  // useEffect(() => {
-  //   fetch('../../public/data.json')
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data));
-  // }, []);
-
-  // const product = data?.find((item) => item._id === Number(id));
-
-  // //! Temporary code ends here
-
   return (
     <>
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
@@ -39,7 +27,7 @@ export default function ProductDetails() {
           <Button>Add to cart</Button>
         </div>
       </div>
-      <ProductReview id={id} />
+      <ProductReview id={id!} />
     </>
   );
 }

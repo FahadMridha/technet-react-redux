@@ -28,7 +28,11 @@ const routes = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: <PrivateRoute><Checkout /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
     ],
   },
